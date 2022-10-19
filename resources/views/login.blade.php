@@ -1,7 +1,7 @@
 <x-layout>
     <div class="container col-5">
         <div class="row">
-
+            <h1 class="display-5 text-center fw-bold mb-4">Marathon MM</h1>
             <h3 class="text-primary my-3 text-center">Login</h3>
             <div class="card p-5 my-3 shadow-sm bg-primary">
             <form method="POST" action="/login">

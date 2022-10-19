@@ -21,6 +21,7 @@ Route::get('/', [CustomerController::class,'index']);
 Route::get('/city', [CityController::class,'index']);
 Route::get('/zone', [ZoneController::class,'index']);
 Route::get('/user', [AuthController::class,'index']);
+Route::get('/login', [AuthController::class,'login']);
 
 Route::delete('/city/{city}/delete',[CityController::class,'destroy']);
 Route::delete('/user/{user}/delete',[AuthController::class,'destroy']);

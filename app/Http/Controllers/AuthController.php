@@ -23,4 +23,8 @@ class AuthController extends Controller
         $user->delete();
         return back();
     }
+
+    public function login(){
+        return view('login');
+    }
 }
