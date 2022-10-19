@@ -1,6 +1,50 @@
 <x-layout>
 <section class="container text-center" id="blogs">
       <h1 class="display-5 fw-bold mb-4">Marathon MM</h1>
+
+<!-- dropdown filter section -->
+
+      <div class="dropdown">
+          <button class="btn btn-outline-primary dropdown-toggle" 
+          type="button" 
+          id="dropdownMenuButton1" 
+          data-bs-toggle="dropdown" 
+          aria-expanded="false"> 
+          {{request('city') ? request('city') : 'Filter By City'}}
+
+          </button>         
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          @foreach($cities as $city)  
+            <li>
+              <a class="dropdown-item" 
+                href="/?city={{$city->name}}">
+                {{$city->name}}
+              </a>
+            </li>
+            @endforeach
+          </ul>
+       
+          <button class="btn btn-outline-success dropdown-toggle" 
+          type="button" 
+          id="dropdownMenuButton1" 
+          data-bs-toggle="dropdown" 
+          aria-expanded="false">
+          {{request('zone') ? request('zone') : 'Filter By Zone'}}
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          @foreach($zones as $zone) 
+            <li>
+              <a class="dropdown-item" 
+                href="/?zone={{$zone->name}}">
+                {{$zone->name}}
+              </a>
+            </li>
+            @endforeach    
+          </ul>   
+      </div>
+
+<!-- search -->
+
       <form method="GET" action="" class="my-3">
         <div class="input-group mb-3">
           <input
@@ -8,7 +52,7 @@
             type="text"
             autocomplete="false"
             class="form-control"
-            placeholder="Search by name or name_mm..."
+            placeholder="Search by name or phone_no..."
             value="{{request('search')}}"
           />
           <button
@@ -21,6 +65,8 @@
         </div>
       </form>
 </section>
+
+<!-- list -->
 
 <h3 class="mt-3 container">Customer List</h3>
     <card-wrapper>
