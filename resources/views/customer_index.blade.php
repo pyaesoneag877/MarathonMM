@@ -74,6 +74,12 @@
 <!-- list -->
 
 <h3 class="mt-3 container">Customer List</h3>
+
+    @auth
+    <div class="container">
+      <a href="/customer/create" class="text-primary d-flex justify-content-start">Create new customer</a>
+    </div>
+    @endauth
     <card-wrapper>
     <table class="container table table-success table-striped mt-3">
         <thead>
@@ -96,6 +102,7 @@
                 <td>{{$customer->city->name}}</td>
                 <td>{{$customer->zone->name}}</td>
                 <td>{{$customer->address}}</td>
+                @auth
                 <td>
                     <a href="/customer/{{$customer->id}}/edit" class="btn btn-warning">edit</a>
                 </td>
@@ -108,6 +115,11 @@
                         </button>
                     </form>
                 </td>
+                @else
+                <td colspan="2">
+                  <p> Please <a href="/login" class="mx-1">login</a> to take actions</p>
+                </td> 
+                @endauth
             </tr> 
             </tbody>
             @empty

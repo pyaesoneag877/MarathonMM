@@ -57,6 +57,11 @@
 </section>
 
 <h3 class="mt-3 container">Zone List</h3>
+    @auth
+    <div class="container">
+      <a href="/zone/create" class="text-primary d-flex justify-content-start">Create new zone</a>
+    </div>
+    @endauth
     <card-wrapper>
     <table class="container table table-success table-striped mt-3">
         <thead>
@@ -73,6 +78,7 @@
                 <td>{{$zone->name}}</td>
                 <td>{{$zone->name_mm}}</td>
                 <td>{{$zone->city->name}}</td>
+                @auth
                 <td>
                     <a href="/zone/{{$zone->id}}/edit" class="btn btn-warning">edit</a>
                 </td>
@@ -85,6 +91,11 @@
                         </button>
                     </form>
                 </td>
+                @else
+                <td rowspan="2">
+                  <p> Please <a href="/login" class="mx-1">login</a> to take actions</p>
+                </td> 
+                @endauth
             </tr>
             </tbody>  
             @empty

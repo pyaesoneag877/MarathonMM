@@ -28,7 +28,7 @@ class AuthController extends Controller
             'name'=>['required','min:5','max:30'],
             'username'=>['required','min:5','max:30',ValidationRule::unique('users','username')],
             'email'=>['required','email', ValidationRule::unique('users','email')],
-            'password'=>['required','min:8','max:25']
+            'password'=>['required','min:8','max:30']
         ]);
         $user=User::create($formData);
 
@@ -38,7 +38,7 @@ class AuthController extends Controller
     }
     public function destroy(User $user){
         $user->delete();
-        return back();
+        return $this->logout();
     }
     public function register(){
         return view('user_create');
@@ -64,5 +64,23 @@ class AuthController extends Controller
         auth()->logout();
         return redirect('/')->with('success','Good Bye');
     }
+    public function edit(User $user){
+        return view('user_edit',[
+            'user'=>$user
+        ]);
+    }
+    public function update(User $user){
+        $formData = request()->validate([
+            'name'=>['required','min:5','max:30'],
+            'username'=>['required','min:5','max:30',ValidationRule::unique('users','username')],
+            'email'=>['required','email', ValidationRule::unique('users','email')],
+            'password'=>['required','min:8','max:30']
+        ]);
+       
+        $user->update($formData);
+
+        return redirect('/user')->with('success','Successfully, '.'"'.$user->name.'" '.'infomation updated' );
+    }
+    
 
 }

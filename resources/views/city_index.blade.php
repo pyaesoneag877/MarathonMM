@@ -28,6 +28,11 @@
 </section>
 
 <h3 class="mt-3 container">City List</h3>
+    @auth
+    <div class="container">
+      <a href="/city/create" class="text-primary d-flex justify-content-start">Create new city</a>
+    </div>
+    @endauth
     <card-wrapper>
     <table class="container table table-success table-striped mt-3">
         <thead>
@@ -43,6 +48,7 @@
             <tr>
                 <td>{{$city->name}}</td>
                 <td>{{$city->name_mm}}</td>
+                @auth
                 <td>
                     <a href="/city/{{$city->id}}/edit" class="btn btn-warning">edit</a>
                 </td>
@@ -55,6 +61,11 @@
                         </button>
                     </form>
                 </td>
+                @else
+                <td colspan="2">
+                  <p> Please <a href="/login" class="mx-1">login</a> to take actions</p>
+                </td> 
+                @endauth
             </tr> 
             </tbody>
             @empty
