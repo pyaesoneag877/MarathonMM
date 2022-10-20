@@ -1,4 +1,9 @@
 <x-layout>
+
+@if(session('success'))
+        <div class="class alert alert-success text-center">{{session('success')}}</div>
+@endif
+
 <section class="container text-center" id="blogs">
       <h1 class="display-5 fw-bold mb-4">Marathon MM</h1>
       <form method="GET" action="" class="my-3">
@@ -60,5 +65,6 @@
         {{$cities->links()}}
         
     </card-wrapper>
+
 
 </x-layout>
