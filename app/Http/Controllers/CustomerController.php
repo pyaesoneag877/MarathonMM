@@ -12,7 +12,7 @@ use Illuminate\Validation\Rule as ValidationRule;
 class CustomerController extends Controller
 {
     public function index(){
-        return view('customer_index',
+        return view('customer.index',
         [
             'customers'=>Customer::latest()->filter(request(['search','city','zone']))->paginate(5),
             'zones'=>Zone::all(),
@@ -24,7 +24,7 @@ class CustomerController extends Controller
         return back();
     }
     public function create(){
-        return view('customer_create',[
+        return view('customer.create',[
             'zones'=>Zone::all(),
             'cities'=>City::all()
         ]);
@@ -42,7 +42,7 @@ class CustomerController extends Controller
         return redirect('/')->with('success','Successfully, new customer '.'"'.$customer->name.'" '.'created' );
     }
     public function edit(Customer $customer){
-        return view('customer_edit',[
+        return view('customer.edit',[
             'customer'=>$customer,
             'zones'=>Zone::all(),
             'cities'=>City::all()

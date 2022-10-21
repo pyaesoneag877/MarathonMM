@@ -17,7 +17,7 @@ class AuthController extends Controller
                                 ->orWhere('email','LIKE','%'.request('search').'%');
                                 
         }
-        return view('user_index',[
+        return view('user.index',[
             'users'=>$users->paginate(5)
         ]);
     }
@@ -41,10 +41,10 @@ class AuthController extends Controller
         return $this->logout();
     }
     public function register(){
-        return view('user_create');
+        return view('user.create');
     }
     public function login(){
-        return view('login');
+        return view('user.login');
     }
     public function post_login(){
         $formData=request()->validate([
@@ -65,7 +65,7 @@ class AuthController extends Controller
         return redirect('/')->with('success','Good Bye');
     }
     public function edit(User $user){
-        return view('user_edit',[
+        return view('user.edit',[
             'user'=>$user
         ]);
     }

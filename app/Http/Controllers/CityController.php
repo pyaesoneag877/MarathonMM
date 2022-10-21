@@ -16,13 +16,13 @@ class CityController extends Controller
                                 ->orWhere('name_mm','LIKE','%'.request('search').'%');
                                 
         }
-        return view('city_index',[
+        return view('city.index',[
             'cities'=>$cities->paginate(5)            
         ]);
     }
 
     public function create(){
-        return view('city_create');
+        return view('city.create');
     }
 
     public function store(){
@@ -37,7 +37,7 @@ class CityController extends Controller
     }
 
     public function edit(City $city){
-        return view('city_edit',[
+        return view('city.edit',[
             'city'=>$city
         ]);
     }

@@ -11,7 +11,7 @@ use Illuminate\Validation\Rule as ValidationRule;
 class ZoneController extends Controller
 {
     public function index(){
-        return view('zone_index',[
+        return view('zone.index',[
             'zones'=>Zone::latest()->filter(request(['search','city']))->paginate(5),
             'cities'=>City::all()
         ]);
@@ -21,7 +21,7 @@ class ZoneController extends Controller
         return back();
     }
     public function create(){
-        return view('zone_create',[
+        return view('zone.create',[
             'cities'=>City::all()
         ]);
     }
@@ -37,7 +37,7 @@ class ZoneController extends Controller
     }
 
     public function edit(Zone $zone){
-        return view('zone_edit',[
+        return view('zone.edit',[
             'zone'=>$zone,
             'cities'=>City::all()
         ]);
